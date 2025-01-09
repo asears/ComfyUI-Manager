@@ -4,7 +4,7 @@ import os
 import json
 from git import Repo
 import concurrent
-import datetime
+import datetime as dt
 import concurrent.futures
 import requests
 

@@ -11,7 +11,7 @@ import threading
 import re
 import shutil
 import git
-from datetime import datetime
+import datetime as dt
 
 from server import PromptServer
 import manager_core as core
@@ -1248,7 +1248,7 @@ async def get_notice(request):
                     markdown_content = add_target_blank(markdown_content)
 
                     try:
-                        if core.comfy_ui_commit_datetime == datetime(1900, 1, 1, 0, 0, 0):
+                        if core.comfy_ui_commit_datetime == dt.datetime(1900, 1, 1, 0, 0, 0):
                             markdown_content = '<P style="text-align: center; color:red; background-color:white; font-weight:bold">Your ComfyUI isn\'t git repo.</P>' + markdown_content
                         elif core.comfy_ui_required_commit_datetime.date() > core.comfy_ui_commit_datetime.date():
                             markdown_content = '<P style="text-align: center; color:red; background-color:white; font-weight:bold">Your ComfyUI is too OUTDATED!!!</P>' + markdown_content

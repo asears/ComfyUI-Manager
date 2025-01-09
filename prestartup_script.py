@@ -17,7 +17,7 @@ import security_check
 import manager_util
 import cm_global
 import manager_downloader
-import datetime
+import datetime as dt
 import folder_paths
 
 security_check.security_check()
@@ -236,7 +236,7 @@ try:
 
         def sync_write(self, message, file_only=False):
             with log_lock:
-                timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+                timestamp = dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
                 if self.last_char != '\n':
                     log_file.write(message)
                 else:
@@ -340,7 +340,7 @@ except:
     print("## [ERROR] ComfyUI-Manager: GitPython package seems to be installed, but failed to load somehow. Make sure you have a working git client installed")
 
 
-print("** ComfyUI startup time:", datetime.now())
+print("** ComfyUI startup time:", dt.datetime.now())
 print("** Platform:", platform.system())
 print("** Python version:", sys.version)
 print("** Python executable:", sys.executable)

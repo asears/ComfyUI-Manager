@@ -11,7 +11,7 @@ import re
 import shutil
 import configparser
 import platform
-from datetime import datetime
+import datetime as dt
 
 import git
 from git.remote import RemoteProgress
@@ -201,10 +201,10 @@ cached_config = None
 js_path = None
 
 comfy_ui_required_revision = 1930
-comfy_ui_required_commit_datetime = datetime(2024, 1, 24, 0, 0, 0)
+comfy_ui_required_commit_datetime = dt.datetime(2024, 1, 24, 0, 0, 0)
 
 comfy_ui_revision = "Unknown"
-comfy_ui_commit_datetime = datetime(1900, 1, 1, 0, 0, 0)
+comfy_ui_commit_datetime = dt.datetime(1900, 1, 1, 0, 0, 0)
 
 channel_dict = None
 channel_list = None
@@ -2420,7 +2420,7 @@ async def get_current_snapshot():
 
 async def save_snapshot_with_postfix(postfix, path=None):
     if path is None:
-        now = datetime.now()
+        now = dt.datetime.now()
 
         date_time_format = now.strftime("%Y-%m-%d_%H-%M-%S")
         file_name = f"{date_time_format}_{postfix}"
