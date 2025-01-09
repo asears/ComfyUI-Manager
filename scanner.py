@@ -300,7 +300,7 @@ def update_custom_nodes():
             return g.rate_limiting[0] == 0
 
         if is_rate_limit_exceeded():
-            print(f"GitHub API Rate Limit Exceeded: remained - {(g.rate_limiting_resettime - datetime.datetime.now().timestamp())/60:.2f} min")
+            print(f"GitHub API Rate Limit Exceeded: remained - {(g.rate_limiting_resettime - dt.datetime.now().timestamp())/60:.2f} min")
         else:
             def renew_stat(url):
                 if is_rate_limit_exceeded():
@@ -321,7 +321,7 @@ def update_custom_nodes():
                         owner_repo = "/".join(path_parts[-2:])
                         repo = g.get_repo(owner_repo)
                         owner = repo.owner
-                        now = datetime.datetime.now(datetime.timezone.utc)
+                        now = dt.datetime.now(dt.timezone.utc)
                         author_time_diff = now - owner.created_at
                         
                         last_update = repo.pushed_at.strftime("%Y-%m-%d %H:%M:%S") if repo.pushed_at else 'N/A'
@@ -355,7 +355,7 @@ def update_custom_nodes():
             # renew outdated cache
             outdated_urls = []
             for k, v in github_stats.items():
-                elapsed = (datetime.datetime.now().timestamp() - v['cached_time'])
+                elapsed = (dt.datetime.now().timestamp() - v['cached_time'])
                 if elapsed > 60*60*12:  # 12 hours
                     outdated_urls.append(k)
 
